@@ -1,0 +1,26 @@
+echo "# online-store-web" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:openecommerce/online-store-web.git
+git push -u origin master
+
+git remote add origin git@github.com:openecommerce/online-store-web.git
+git push -u origin master
+
+
+git@github.com:openecommerce/config.git
+git@github.com:openecommerce/parent.git
+git@github.com:openecommerce/design.git
+git@github.com:openecommerce/online-store-web.git
+git@github.com:openecommerce/online-store-mobile.git
+
+git@github.com:openecommerce/discovery-service.git
+git@github.com:openecommerce/zipkin-tracing.git
+git@github.com:openecommerce/hystrix-dashboard.git
+git@github.com:openecommerce/config-service.git
+
+git@github.com:openecommerce/cms-search-service.git
+git@github.com:openecommerce/tracks-service.git
+git@github.com:openecommerce/cms-service.git
+git@github.com:openecommerce/search-service.git
