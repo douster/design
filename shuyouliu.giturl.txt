@@ -24,3 +24,5 @@ git@github.com:openecommerce/cms-search-service.git
 git@github.com:openecommerce/tracks-service.git
 git@github.com:openecommerce/cms-service.git
 git@github.com:openecommerce/search-service.git
+
+git@github.com:openecommerce/app-api-service.git
