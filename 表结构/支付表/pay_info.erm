@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-	<x>0</x>
-	<y>31</y>
+	<x>116</x>
+	<y>55</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -41,27 +41,27 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<export_ddl_setting>
-				<output_path></output_path>
-				<encoding></encoding>
-				<line_feed></line_feed>
+				<output_path>C:\Users\Administrator\Desktop\pay_info.sql</output_path>
+				<encoding>UTF-8</encoding>
+				<line_feed>CR+LF</line_feed>
 				<is_open_after_saved>true</is_open_after_saved>
-				<environment_id>null</environment_id>
+				<environment_id>0</environment_id>
 				<category_id>null</category_id>
 				<ddl_target>
 					<create_comment>true</create_comment>
 					<create_foreignKey>true</create_foreignKey>
-					<create_index>true</create_index>
-					<create_sequence>true</create_sequence>
+					<create_index>false</create_index>
+					<create_sequence>false</create_sequence>
 					<create_table>true</create_table>
-					<create_tablespace>true</create_tablespace>
-					<create_trigger>true</create_trigger>
-					<create_view>true</create_view>
-					<drop_index>true</drop_index>
-					<drop_sequence>true</drop_sequence>
+					<create_tablespace>false</create_tablespace>
+					<create_trigger>false</create_trigger>
+					<create_view>false</create_view>
+					<drop_index>false</drop_index>
+					<drop_sequence>false</drop_sequence>
 					<drop_table>true</drop_table>
-					<drop_tablespace>true</drop_tablespace>
-					<drop_trigger>true</drop_trigger>
-					<drop_view>true</drop_view>
+					<drop_tablespace>false</drop_tablespace>
+					<drop_trigger>false</drop_trigger>
+					<drop_view>false</drop_view>
 					<inline_column_comment>true</inline_column_comment>
 					<inline_table_comment>true</inline_table_comment>
 					<comment_value_description>true</comment_value_description>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2016-10-11 13:06:12</creation_date>
-			<updated_date>2016-10-13 17:36:22</updated_date>
+			<updated_date>2016-10-14 11:16:38</updated_date>
 			<model_property>
 				<name>Project Name</name>
 				<value></value>
@@ -238,7 +238,7 @@
 		</word>
 		<word>
 			<id>4</id>
-			<length>null</length>
+			<length>32</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -250,7 +250,7 @@
 			<description>渠道</description>
 			<logical_name>渠道id</logical_name>
 			<physical_name>channel_id</physical_name>
-			<type></type>
+			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>5</id>
@@ -286,7 +286,7 @@
 		</word>
 		<word>
 			<id>7</id>
-			<length>null</length>
+			<length>60</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -298,7 +298,7 @@
 			<description>校验码（针对订单支付金额，随机数，支付方式，系统支付编码进行md5加密）</description>
 			<logical_name>订单内容校验码(针对订单支付金额，随机数，支付方式，系统支付编码进行md5加密)</logical_name>
 			<physical_name>content_md5</physical_name>
-			<type></type>
+			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>8</id>
@@ -670,7 +670,7 @@
 		</word>
 		<word>
 			<id>31</id>
-			<length>null</length>
+			<length>40</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -682,7 +682,7 @@
 			<description>可以是email和手机号码</description>
 			<logical_name>卖家帐号（卖家在支付平台注册的号）</logical_name>
 			<physical_name>seller_num</physical_name>
-			<type></type>
+			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>32</id>
@@ -762,7 +762,7 @@
 			<description>使用总积分</description>
 			<logical_name>使用总积分</logical_name>
 			<physical_name>total_points</physical_name>
-			<type></type>
+			<type>integer</type>
 		</word>
 		<word>
 			<id>37</id>
@@ -830,7 +830,7 @@
 		</word>
 		<word>
 			<id>41</id>
-			<length>null</length>
+			<length>32</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -842,7 +842,7 @@
 			<description>用户</description>
 			<logical_name>用户id</logical_name>
 			<physical_name>user_id</physical_name>
-			<type></type>
+			<type>varchar(n)</type>
 		</word>
 	</dictionary>
 	<tablespace_set>
@@ -867,12 +867,12 @@
 		</note>
 		<table>
 			<id>1</id>
-			<height>1011</height>
-			<width>502</width>
+			<height>481</height>
+			<width>345</width>
 				<font_name>微软雅黑</font_name>
 				<font_size>9</font_size>
-			<x>420</x>
-			<y>36</y>
+			<x>341</x>
+			<y>60</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1059,7 +1059,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>integer</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1125,7 +1125,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1158,7 +1158,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1191,7 +1191,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -1620,7 +1620,7 @@
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type></type>
+					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
