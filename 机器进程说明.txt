@@ -1,0 +1,19 @@
+IP 128:
+	config-service-0.0.1-SNAPSHOT.jar
+	discovery-service-0.0.1-SNAPSHOT.jar
+	app-api-service-0.0.1-SNAPSHOT.jar
+	seller-api-service-0.0.1-SNAPSHOT.jar
+	seller-service-0.0.1-SNAPSHOT.jar
+	user-service-0.0.1-SNAPSHOT.jar
+	employee-service-0.0.1-SNAPSHOT.jar
+	employee-api-service-0.0.1-SNAPSHOT.jar
+IP 131:
+	web-app:8787
+	web-seller:8788
+	web-employee:8789
+
+	web-nginx:80\  -->app
+	web-nginx:80\seller --> seller
+	web-nginx:80\employee --> employee
+
+
