@@ -12,8 +12,9 @@ IP 131:
 	web-seller:8788
 	web-employee:8789
 
-	web-nginx:80\  -->app
-	web-nginx:80\seller --> seller
-	web-nginx:80\employee --> employee
+	web-nginx:80\  -->app 9990 8181/uaa/user
+	web-nginx-seller:88\ --> seller 9991 8282/saa/user 8788   44388
+	web-nginx-employee:89\ --> employee 44389:wq
+
 
 
