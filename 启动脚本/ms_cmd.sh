@@ -41,7 +41,7 @@ function restart_core(){
 
 #服务列表
 function ms_list(){
-    ps -ef | grep java | grep service
+    ps -ef | grep java | grep "/data/es/openec/"
 }
 
 #输出用例
