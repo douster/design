@@ -1,0 +1,29 @@
+IP 128:
+	config-service-0.0.1-SNAPSHOT.jar
+	discovery-service-0.0.1-SNAPSHOT.jar
+	app-api-service-0.0.1-SNAPSHOT.jar
+	seller-api-service-0.0.1-SNAPSHOT.jar
+	seller-service-0.0.1-SNAPSHOT.jar
+	user-service-0.0.1-SNAPSHOT.jar
+	employee-service-0.0.1-SNAPSHOT.jar
+	employee-api-service-0.0.1-SNAPSHOT.jar
+IP 131:
+	web-app:8787
+	web-seller:8788
+	web-employee:8789
+
+	web-nginx:80\  -->app 9990 8181/uaa/user
+
+IP 117
+	web-nginx-seller:88\ --> seller 9991 8282/saa/user 8788   44388
+IP 120
+	web-nginx-employee:89\ --> employee 9992  8383/eaa/user  44389
+
+
+seller/saa/v1/me
+
+employee/eaa/v1/me
+
+http://192.168.1.117/#/
+
+
