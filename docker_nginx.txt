@@ -1,0 +1,12 @@
+
+docker pull daocloud.io/library/nginx:1.9.12
+
+docker run --name openec-nginx-app -v /data/nginx_home/nginx.conf:/etc/nginx/nginx.conf:ro -d -p 80:80 -p 443:443 daocloud.io/library/nginx:1.9.12
+
+docker rm openec-nginx-app
+
+docker run --name openec-nginx-app -v /data/nginx_home/html:/usr/share/nginx/html -d -p 80:80 -p 443:443 daocloud.io/library/nginx:1.9.12
+
+/usr/share/nginx/html
+
+
