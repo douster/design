@@ -1,0 +1,16 @@
+192.168.1.120  openec/111111
+git@github.com:openecommerce/employee-mgr-web.git
+
+192.168.1.117  openec/111111
+git@github.com:openecommerce/seller-edit-web.git
+
+git@github.com:openecommerce/customer-web.git
+
+
+
+path = /var/spool/samba
+vi /etc/samba/smb.conf 
+
+/bin/systemctl restart  smb.service
+useradd openec
+pdbedit -a openec

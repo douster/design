@@ -1,0 +1,50 @@
+ms stop gateway-employee
+ms stop gateway-seller
+ms stop gateway-customer
+ms stop unique-code-service
+ms stop zipkin-tracing
+
+ms start gateway-employee
+ms start gateway-seller
+ms start gateway-customer
+ms start unique-code-service
+ms start zipkin-tracing
+
+ms restart inventory-edit-service
+ms restart product-edit-service
+
+
+128
+
+ms stop config-service
+ms stop discovery-service
+ms stop seller-service
+ms stop seller-api-service
+ms stop employee-api-service
+ms stop app-api-service
+ms stop employee-service
+ms stop user-service
+
+ms start config-service
+ms start discovery-service
+ms start seller-service
+ms start seller-api-service
+ms start employee-api-service
+ms start app-api-service
+ms start employee-service
+ms start user-service
+
+120
+
+ms stop model-service
+ms stop model-content-service
+
+ms start model-service
+ms start model-content-service
+
+117
+ms stop inventory-edit-service
+ms stop product-edit-service
+
+ms start inventory-edit-service
+ms start product-edit-service
