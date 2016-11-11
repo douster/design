@@ -17,6 +17,15 @@ http://192.168.1.129:9200/_plugin/head/
 
 
 
+FROM daocloud.io/library/elasticsearch:2.3.5
+
+RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+RUN /usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf
+EXPOSE 9200
+
+docker build --tag=es_headkopf .
+docker run -d -p 9200:9200 --name="es" es_headkopf
+
 
 
 
