@@ -1,0 +1,68 @@
+等docker 唳掛
+
+Dockerfile
+cat Dockerfile 
+FROM daocloud.io/library/elasticsearch:2.3.5
+
+RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+
+EXPOSE 9200
+
+docker build --tag=es_ezio .
+
+docker run -d -p 9200:9200 --name="es" es_ezio
+
+
+http://192.168.1.129:9200/_plugin/head/
+
+
+
+
+
+
+
+docker run -it -d \
+
+每name $nodeName \
+
+每net=host \
+
+每oom-kill-disable=true \
+
+-e ES_HEAP_SIZE=§$ES_HEAP_SIZE§ \
+
+-v $datadir:/data/elasticsearch/data \
+
+-v $logdir:/data/elasticsearch/logs \
+
+※$image§ \
+
+每node.name ※$nodeName§ \
+
+每cluster.name $clusterName \
+
+每network.publish_host $localIP \
+
+每transport.tcp.port $tranPort \
+
+每http.port $httpPort \
+
+每discovery.zen.ping.multicast.enabled ※false§ \
+
+每discovery.zen.ping.unicast.hosts ※192.168.1.117:9300∪,§192.168.1.129:9300∪,§192.168.1.131:9300∪ \
+
+每index.cache.field.max_size ※10000mb§ \
+
+每index.cache.filter.max_size ※10000mb§ \
+
+每index.cache.field.expire ※60m§ \
+
+每index.cache.field.type ※soft§ \
+
+每indices.cache.filter.size ※50%§ \
+
+每index.cache.filter.expire ※60m§ \
+
+每Des.index.store.type ※memory§ \
+
+每threadpool.search.size ※61∪
