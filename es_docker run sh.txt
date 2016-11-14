@@ -1,0 +1,202 @@
+单docker 版本
+
+Dockerfile
+cat Dockerfile 
+FROM daocloud.io/library/elasticsearch:2.3.5
+
+RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+
+EXPOSE 9200
+
+docker build --tag=es_ezio .
+
+docker run -d -p 9200:9200 --name="es" es_ezio
+
+
+http://192.168.1.129:9200/_plugin/head/
+
+
+
+FROM daocloud.io/library/elasticsearch:2.3.5
+
+RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+RUN /usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf
+EXPOSE 9200
+
+docker build --tag=es_headkopf .
+docker run -d -p 9200:9200 --name="es" es_headkopf
+
+
+测试
+http://192.168.1.129:9200/
+
+{
+  "name" : "J. Jonah Jameson",
+  "cluster_name" : "elasticsearch",
+  "version" : {
+    "number" : "2.3.5",
+    "build_hash" : "90f439ff60a3c0f497f91663701e64ccd01edbb4",
+    "build_timestamp" : "2016-07-27T10:36:52Z",
+    "build_snapshot" : false,
+    "lucene_version" : "5.5.0"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+
+http://192.168.1.129:9200/_nodes/process?pretty
+{
+  "cluster_name" : "elasticsearch",
+  "nodes" : {
+    "B3A8VNI7QnyfVAqvwJwoVQ" : {
+      "name" : "J. Jonah Jameson",
+      "transport_address" : "172.17.0.3:9300",
+      "host" : "172.17.0.3",
+      "ip" : "172.17.0.3",
+      "version" : "2.3.5",
+      "build" : "90f439f",
+      "http_address" : "172.17.0.3:9200",
+      "process" : {
+        "refresh_interval_in_millis" : 1000,
+        "id" : 1,
+        "mlockall" : false
+      }
+    }
+  }
+}
+
+http://192.168.1.129:9200/_cat/health?v
+epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent 
+1478843999 05:59:59  elasticsearch yellow          1         1      1   1    0    0        1             0                  -                 50.0% 
+
+创建Index
+curl -XPUT 'http://192.168.1.129:9200/customer?pretty'
+
+
+curl 'http://192.168.1.129:9200/_cat/indices?v'
+health status index    pri rep docs.count docs.deleted store.size pri.store.size 
+yellow open   liusy      1   1          0            0       159b           159b 
+yellow open   customer   5   1          0            0       650b           650b
+
+curl -XPUT 'http://192.168.1.129:9200/customer/external/1?pretty' -d '
+
+{
+
+  "name": "John Doe"
+
+}'
+
+{
+
+  "_index" : "customer",
+
+  "_type" : "external",
+
+  "_id" : "1",
+
+  "_version" : 1,
+
+  "_shards" : {
+
+    "total" : 2,
+
+    "successful" : 1,
+
+    "failed" : 0
+
+  },
+
+  "created" : true
+
+}
+
+curl -XGET 'http://192.168.1.129:9200/customer/external/1?pretty'
+
+http://blog.sina.com.cn/s/blog_8ea8e9d50102wu26.html
+
+curl -XPUT 'http://192.168.1.129:9200/lsy/external/1?pretty' -d '
+
+{
+
+  "name": "John Doe"
+
+}'
+---------------------------------------
+创建一个新的索引。
+curl -XPUT "192.168.1.129:9200/index_test"
+
+{
+    "acknowledged": true
+}         --成功
+
+curl -XPUT "192.168.1.129:9200/index_test1" -d '
+
+{
+  "settings": {
+    "index": {
+      "number_of_replicas": "1", 
+      "number_of_shards": "5" 
+    }
+  },
+  "mappings": { 
+    "test_type": { 
+      "properties": {
+        "name": { 
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "age": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}'
+
+---------------------------------------
+
+docker run -it -d \
+
+–name $nodeName \
+
+–net=host \
+
+–oom-kill-disable=true \
+
+-e ES_HEAP_SIZE=”$ES_HEAP_SIZE” \
+
+-v $datadir:/data/elasticsearch/data \
+
+-v $logdir:/data/elasticsearch/logs \
+
+“$image” \
+
+–node.name “$nodeName” \
+
+–cluster.name $clusterName \
+
+–network.publish_host $localIP \
+
+–transport.tcp.port $tranPort \
+
+–http.port $httpPort \
+
+–discovery.zen.ping.multicast.enabled “false” \
+
+–discovery.zen.ping.unicast.hosts “192.168.1.117:9300″,”192.168.1.129:9300″,”192.168.1.131:9300″ \
+
+–index.cache.field.max_size “10000mb” \
+
+–index.cache.filter.max_size “10000mb” \
+
+–index.cache.field.expire “60m” \
+
+–index.cache.field.type “soft” \
+
+–indices.cache.filter.size “50%” \
+
+–index.cache.filter.expire “60m” \
+
+–Des.index.store.type “memory” \
+
+–threadpool.search.size “61″

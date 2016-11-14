@@ -1,0 +1,76 @@
+curl -XPUT 'localhost:9200/index_test/_mapping/test_type' -d '
+
+{
+  "test_type": { 
+      "properties": {
+        "name": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "age": {
+          "type": "integer"
+        }
+      }
+    }
+  }'
+
+
+ # 这里的pretty参数的作用是使得返回的json显示地更加好看。1是文档的id值（唯一键）。
+curl -XPUT 'localhost:9200/index_test/test_type/1?pretty' -d '
+{
+    "name": "zhangsan",
+    "age" : "12"
+}'
+更新一个文档
+curl -XPOST '192.168.1.129:9200/index_test/test_type/1?pretty' -d ' # 这里的1必须是索引中已经存在id，否则就会变成新增文档操作
+{
+    "name": "lisi",
+    "age" : "12"
+}'
+http://blog.csdn.net/xialei199023/article/details/48085125
+
+query
+curl -XGET '192.168.1.129:9200/index_test/test_type/1?pretty'
+
+
+{
+    "name": "liusy",
+    "age" : "18"
+}'
+
+
+
+curl -XPOST "192.168.1.129:9200/index_test/test_type/_search" -d '
+{
+  "query": {
+    "match_all": {}
+  }
+}'
+
+
+{
+  "query": {
+    "match_all": {}
+  },
+  "from": 1,        
+  "size": 1,        
+  "sort": {
+    "age": {  
+      "order": "asc"
+    }
+  } 
+}
+
+
+
+curl -XPOST "192.168.1.129:9200/index_test/test_type/_search" -d '
+{
+  "query": {
+    "term": {
+      "age": "18"
+    }
+  }
+}
+'
+
+
