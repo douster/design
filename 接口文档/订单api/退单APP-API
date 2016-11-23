@@ -21,6 +21,8 @@ URL连接:http://192.168.1.131/api/order/v1/newRefund
 //退款列表接口	
 请求:GET
 URL连接:http://192.168.1.131/api/order/v1/refundList?page=0&size=3&type=0	  type 退单类型 (0--退款单  1--退货单)
+//退款列表接口(按状态查询)
+http://192.168.1.117/api/order_edit/v1/refundListByStatus?page=0&size=3&type=0&status=1 status= 0(待审核) 1(审核通过) 2(审核拒绝)
 {
     "status": "0",
     "msg": "退单列表获取成功",
