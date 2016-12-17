@@ -1,0 +1,57 @@
+接口名称-批量增加CMS内容
+
+ 接口URL- http://ip:port/api/cms_edit/v1/addCmsContent
+
+请求方式-POST
+
+参数:[{title: - 标题,remark: 描述,content: 内容,classifyId： 分类id}]
+
+返回:RespEntity - {status: 0为成功 , msg: 响应信息, data: data}  
+
+------------------------------------------------------------------------------------------
+
+接口名称-根据id删除内容
+
+ 接口URL- http://ip:port/api/cms_edit/v1/delCmsContent?cmsId=xx
+
+请求方式-GET
+
+参数:cmsId - 内容id
+
+返回:RespEntity - {status: 0为成功 , msg: 响应信息, data: data}
+
+------------------------------------------------------------------------------------------
+
+接口名称-根据id修改信息
+
+ 接口URL- http://ip:port/api/cms_edit/v1/modifyCmsContent
+
+请求方式-POST
+
+参数:{id:cmsId,title: - 标题,remark: 描述,content: 内容,classifyId： 分类id,status: 状态(0未发布，1已发布)} - (除id以外，字段都可为空)
+
+返回:RespEntity - {status: 0为成功 , msg: 响应信息, data: data}
+
+------------------------------------------------------------------------------------------
+
+接口名称-通过分类和状态查询列表
+
+ 接口URL- http://ip:port/api/cms_edit/v1/getCmsContentListByClassify?status=xx&classifyId=xx&page=xx&size=xx
+
+请求方式-GET
+
+参数:status - 状态(0未发布，1已发布)classifyId - 分类idpage - 当前页size - 条数
+
+返回:RespEntity - {status: 0为成功 , msg: 响应信息, data: data}
+
+------------------------------------------------------------------------------------------
+
+接口名称-接口名称-CMS详情
+
+ 接口URL- http://ip:port/api/cms_edit/v1/getCmsContentById?cmsId=xx
+
+请求方式-GET
+
+参数:cmsId - 内容id
+
+返回:RespEntity - {status: 0为成功 , msg: 响应信息, data: data}
