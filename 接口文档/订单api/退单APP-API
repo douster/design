@@ -1,0 +1,110 @@
+申请退单接口
+请求:POST
+URL连接:http://192.168.1.131/api/order/v1/newRefund
+请求参数:
+{
+    "orderCode": "1479717576045", //原订单号
+    "type": "0", //退单类型 (0--退款单  1--退货单)
+    "sellerName": "耐克", 
+    "sellerId": "10",
+    "logistics": "{\"com\":\"中通\",\"no\":\"123456\"}",
+    "refundReason": "不想要了",
+    "refundOrderItems": [
+        {
+            "goodsCount": "2", //退货数量
+            "sku": "120161121135401001-0000",
+            "productName": "华为"  
+        }
+    ]
+}
+	
+//退款列表接口	
+请求:GET
+URL连接:http://192.168.1.131/api/order/v1/refundList?page=0&size=3&type=0	  type 退单类型 (0--退款单  1--退货单)
+//退款列表接口(按状态查询)
+http://192.168.1.117/api/order_edit/v1/refundListByStatus?page=0&size=3&type=0&status=1 status= 0(待审核) 1(审核通过) 2(审核拒绝)
+{
+    "status": "0",
+    "msg": "退单列表获取成功",
+    "data": {
+        "content": [
+            {
+                "id": 5,
+                "refundOrderCode": "1479720518765",
+                "orderCode": "1479717576045",
+                "type": "0",
+                "status": "0",
+                "createAt": 1479720518765,
+                "modifyAt": 1479720518765,
+                "sellerName": "耐克",
+                "sellerId": 10,
+                "channelId": null,
+                "memberId": 222,
+                "goodsCount": null,
+                "realSellPrice": 4399,
+                "logistics": "{\"com\":\"中通\",\"no\":\"123456\"}",
+                "outTradeNo": "2100020161121163935026",
+                "refundReason": "不想要了",
+                "refundOpinion": null,
+                "refundOrderItems": [
+                    {
+                        "id": 5,
+                        "refundOrderId": 1479720518765,
+                        "goodsCount": 1,
+                        "sku": "120161121135401001-0000",
+                        "productName": null,
+                        "price": 4399,
+                        "productPic": null,
+                        "specifications": "[\"金色\"]"
+                    }
+                ]
+            }
+        ],
+        "last": false,
+        "totalElements": 3,
+        "totalPages": 3,
+        "sort": null,
+        "numberOfElements": 1,
+        "first": true,
+        "size": 1,
+        "number": 0
+    }
+}	
+//退款详情接口
+GET
+URL连接:http://192.168.1.131/api/order/v1/refundDetail/${refundCode} refundCode 退单号
+{
+    "status": "0",
+    "msg": "退单详情获取成功",
+    "data": {
+        "id": 5,
+        "refundOrderCode": "1479720518765",
+        "orderCode": "1479717576045",
+        "type": "0",
+        "status": "0",
+        "createAt": 1479720518765,
+        "modifyAt": 1479720518765,
+        "sellerName": "耐克",
+        "sellerId": 10,
+        "channelId": null,
+        "memberId": 222,
+        "goodsCount": null,
+        "realSellPrice": 4399,
+        "logistics": "{\"com\":\"中通\",\"no\":\"123456\"}",
+        "outTradeNo": "2100020161121163935026",
+        "refundReason": "不想要了",
+        "refundOpinion": null,
+        "refundOrderItems": [
+            {
+                "id": 5,
+                "refundOrderId": 1479720518765,
+                "goodsCount": 1,
+                "sku": "120161121135401001-0000",
+                "productName": null,
+                "price": 4399,
+                "productPic": null,
+                "specifications": "[\"金色\"]"
+            }
+        ]
+    }
+}
