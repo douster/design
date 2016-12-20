@@ -1,0 +1,408 @@
+ curl 'localhost:9200/_cat/health?v'
+http://192.168.1.129:9200/_cat/health?v
+epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent 
+1482212144 05:35:44  elasticsearch yellow          1         1      5   5    0    0        5             0                  -                 50.0% 
+
+http://192.168.1.129:9200/_cat/nodes?v
+host       ip         heap.percent ram.percent load node.role master name     
+172.17.0.3 172.17.0.3            8          97 0.03 d         *      Recorder
+
+http://192.168.1.129:9200/_cat/indices?v
+health status index         pri rep docs.count docs.deleted store.size pri.store.size 
+yellow open   index_product   5   1          3            0     31.4kb         31.4kb 
+黄色意味着某些复制没有（或者还未）被分配
+
+PUT 
+http://192.168.1.129:9200/customer?pretty
+{
+  "acknowledged" : true
+}
+
+http://192.168.1.129:9200/_cat/indices?v
+health status index         pri rep docs.count docs.deleted store.size pri.store.size 
+yellow open   index_product   5   1          3            0     31.4kb         31.4kb 
+yellow open   customer        5   1          0            0       650b           650b 
+黄色意味着某些复制没有（或者还未）被分配
+
+http://192.168.1.129:9200/customer/list/1?pretty
+{
+          "name": "天通苑1栋2单元345室"
+}
+回应
+{
+  "_index" : "customer",
+  "_type" : "list",
+  "_id" : "1",
+  "_version" : 1,
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "created" : true
+}
+
+http://192.168.1.129:9200/customer/list/1?pretty
+{
+  "_index" : "customer",
+  "_type" : "list",
+  "_id" : "1",
+  "_version" : 1,
+  "found" : true,
+  "_source" : {
+    "name" : "天通苑1栋2单元345室"
+  }
+}
+
+analyzer=ik
+
+
+
+删除一个文档
+curl -XDELETE 'localhost:9200/customer?pretty'
+
+curl -<REST Verb> <Node>:<Port>/<Index>/<Type><ID>
+
+ 索引/替换文档
+        
+        我们先前看到，怎样索引一个文档。现在我们再次调用那个命令：
+            curl -XPUT 'localhost:9200/customer/external/1?pretty' -d '
+            {
+              "name": "John Doe"
+            }'
+更新文档
+ curl -XPOST 'localhost:9200/customer/external/1/_update?pretty' -d '
+        {
+          "doc": { "name": "Jane Doe" }
+        }'
+
+批处理：
+ curl -XPOST 'localhost:9200/customer/external/_bulk?pretty' -d '
+        {"index":{"_id":"1"}}
+        {"name": "John Doe" }
+        {"index":{"_id":"2"}}
+        {"name": "Jane Doe" }
+
+
+搜索API
+curl 'localhost:9200/bank/_search?q=*&pretty'
+http://192.168.1.129:9200/customer/list
+http://192.168.1.129:9200/customer/_search?q=*&pretty
+{
+  "took" : 7,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 1.0,
+    "hits" : [ {
+      "_index" : "customer",
+      "_type" : "list",
+      "_id" : "1",
+      "_score" : 1.0,
+      "_source" : {
+        "name" : "天通苑1栋2单元345室"
+      }
+    } ]
+  }
+}
+
+
+http://192.168.1.129:9200/customer/_search?q=天通苑1栋2单元345室*&pretty
+null
+
+http://192.168.1.129:9200/customer/_search?pretty
+q=天通苑1栋2单元345室
+{
+          "query": { "match": { "name": "天通苑" } }
+}
+
+http://192.168.1.129:9200/customer/_search?pretty
+ {
+          "query": {
+            "bool": {
+              "should": [
+                { "match": { "name": "天" } },
+                { "match": { "name": "通" } }
+              ]
+            }
+          }
+        }
+
+
+curl -XPOST "http://192.168.1.129:9200/_analyze?analyzer=ik&pretty=true&text=helloworld,中华人民共和国" 
+{
+  "tokens" : [ {
+    "token" : "helloworld",
+    "start_offset" : 0,
+    "end_offset" : 10,
+    "type" : "ENGLISH",
+    "position" : 0
+  }, {
+    "token" : "中华人民共和国",
+    "start_offset" : 11,
+    "end_offset" : 18,
+    "type" : "CN_WORD",
+    "position" : 1
+  }, {
+    "token" : "中华人民",
+    "start_offset" : 11,
+    "end_offset" : 15,
+    "type" : "CN_WORD",
+    "position" : 2
+  }, {
+    "token" : "中华",
+    "start_offset" : 11,
+    "end_offset" : 13,
+    "type" : "CN_WORD",
+    "position" : 3
+  }, {
+    "token" : "华人",
+    "start_offset" : 12,
+    "end_offset" : 14,
+    "type" : "CN_WORD",
+    "position" : 4
+  }, {
+    "token" : "人民共和国",
+    "start_offset" : 13,
+    "end_offset" : 18,
+    "type" : "CN_WORD",
+    "position" : 5
+  }, {
+    "token" : "人民",
+    "start_offset" : 13,
+    "end_offset" : 15,
+    "type" : "CN_WORD",
+    "position" : 6
+  }, {
+    "token" : "共和国",
+    "start_offset" : 15,
+    "end_offset" : 18,
+    "type" : "CN_WORD",
+    "position" : 7
+  }, {
+    "token" : "共和",
+    "start_offset" : 15,
+    "end_offset" : 17,
+    "type" : "CN_WORD",
+    "position" : 8
+  }, {
+    "token" : "国",
+    "start_offset" : 17,
+    "end_offset" : 18,
+    "type" : "CN_CHAR",
+    "position" : 9
+  } ]
+}
+
+
+http://192.168.1.129:9200/iktest?pretty
+{
+    "settings" : {
+        "analysis" : {
+            "analyzer" : {
+                "ik" : {
+                    "tokenizer" : "ik_max_word"
+                }
+            }
+        }
+    },
+    "mappings" : {
+        "article" : {
+            "dynamic" : true,
+            "properties" : {
+                "subject" : {
+                    "type" : "string",
+                    "analyzer" : "ik_max_word"
+                }
+            }
+        }
+    }
+}
+反应
+{
+  "acknowledged" : true
+}
+
+curl -XPOST http://192.168.1.129:9200/iktest/article/_bulk?pretty -d '
+{ "index" : { "_id" : "1" } }
+{"subject" : "＂闺蜜＂崔顺实被韩检方传唤 韩总统府促彻查真相" }
+{ "index" : { "_id" : "2" } }
+{"subject" : "韩举行＂护国训练＂ 青瓦台:决不许国家安全出问题" }
+{ "index" : { "_id" : "3" } }
+{"subject" : "媒体称FBI已经取得搜查令 检视希拉里电邮" }
+{ "index" : { "_id" : "4" } }
+{"subject" : "村上春树获安徒生奖 演讲中谈及欧洲排外问题" }
+{ "index" : { "_id" : "5" } }
+{"subject" : "希拉里团队炮轰FBI 参院民主党领袖批其“违法”" }
+'
+{
+  "took" : 141,
+  "errors" : false,
+  "items" : [ {
+    "index" : {
+      "_index" : "iktest",
+      "_type" : "article",
+      "_id" : "1",
+      "_version" : 1,
+      "_shards" : {
+        "total" : 2,
+        "successful" : 1,
+        "failed" : 0
+      },
+      "status" : 201
+    }
+  }, {
+    "index" : {
+      "_index" : "iktest",
+      "_type" : "article",
+      "_id" : "2",
+      "_version" : 1,
+      "_shards" : {
+        "total" : 2,
+        "successful" : 1,
+        "failed" : 0
+      },
+      "status" : 201
+    }
+  }, {
+    "index" : {
+      "_index" : "iktest",
+      "_type" : "article",
+      "_id" : "3",
+      "_version" : 1,
+      "_shards" : {
+        "total" : 2,
+        "successful" : 1,
+        "failed" : 0
+      },
+      "status" : 201
+    }
+  }, {
+    "index" : {
+      "_index" : "iktest",
+      "_type" : "article",
+      "_id" : "4",
+      "_version" : 1,
+      "_shards" : {
+        "total" : 2,
+        "successful" : 1,
+        "failed" : 0
+      },
+      "status" : 201
+    }
+  } ]
+}
+
+curl -XPOST http://192.168.1.129:9200/iktest/article/_search?pretty  -d'
+{
+    "query" : { "match" : { "subject" : "希拉里和韩国" }},
+    "highlight" : {
+        "pre_tags" : ["<font color='red'>"],
+        "post_tags" : ["</font>"],
+        "fields" : {
+            "subject" : {}
+        }
+    }
+}
+
+反应
+{
+  "took" : 84,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 3,
+    "max_score" : 0.034062363,
+    "hits" : [ {
+      "_index" : "iktest",
+      "_type" : "article",
+      "_id" : "2",
+      "_score" : 0.034062363,
+      "_source" : {
+        "subject" : "韩举行＂护国训练＂ 青瓦台:决不许国家安全出问题"
+      },
+      "highlight" : {
+        "subject" : [ "<font color='red'>韩</font>举行＂护<font color='red'>国</font>训练＂ 青瓦台:决不许国家安全出问题" ]
+      }
+    }, {
+      "_index" : "iktest",
+      "_type" : "article",
+      "_id" : "3",
+      "_score" : 0.0076681254,
+      "_source" : {
+        "subject" : "媒体称FBI已经取得搜查令 检视希拉里电邮"
+      },
+      "highlight" : {
+        "subject" : [ "媒体称FBI已经取得搜查令 检视<font color='red'>希拉里</font>电邮" ]
+      }
+    }, {
+      "_index" : "iktest",
+      "_type" : "article",
+      "_id" : "1",
+      "_score" : 0.0021509775,
+      "_source" : {
+        "subject" : "＂闺蜜＂崔顺实被韩检方传唤 韩总统府促彻查真相"
+      },
+      "highlight" : {
+        "subject" : [ "＂闺蜜＂崔顺实被<font color='red'>韩</font>检方传唤 <font color='red'>韩</font>总统府促彻查真相" ]
+      }
+    } ]
+  }
+}
+
+http://192.168.1.129:9200/customer/_search?pretty
+{
+    "query" : { "match" : { "name" : "元678" }},
+    "highlight" : {
+        "pre_tags" : ["<font color='red'>"],
+        "post_tags" : ["</font>"],
+        "fields" : {
+            "name" : {}
+        }
+    }
+}
+
+http://www.cnblogs.com/yjf512/p/4897294.html
+比如上面一个例子，一个文档"我的保时捷马力不错"也会被搜索出来，那么想要精确匹配所有同时包含"宝马 多少 马力"的文档怎么做？就要使用 match_phrase 了
+{
+  "query": {
+    "match_phrase": {
+        "content" : {
+            "query" : "我的宝马多少马力"
+        }
+    }
+  }
+}
+完全匹配可能比较严，我们会希望有个可调节因子，少匹配一个也满足，那就需要使用到slop。
+{
+  "query": {
+    "match_phrase": {
+        "content" : {
+            "query" : "我的宝马多少马力",
+            "slop" : 1
+        }
+    }
+  }
+}
+
+http://192.168.1.129:9200/customer/_search?pretty
+{
+  "query": {
+    "match_phrase": {
+        "name" : {
+            "query" : "天通"
+        }
+    }
+  }
+}
+
+
