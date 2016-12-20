@@ -1,0 +1,21 @@
+接口名称-接口名称-CMS详情
+
+ 接口URL- http://192.168.1.131/api/cms/nologin/getCmsContentById?cmsId=xx&storeId=xx
+
+请求方式-GET
+
+参数:cmsId - 内容idstoreId - 店铺id/小区id
+
+返回:RespEntity - {status: 0为成功 , msg: 响应信息, data: data}
+
+------------------------------------------------------------------------------------------
+
+接口名称-通过分类和状态查询列表
+
+ 接口URL- http://192.168.1.131/api/cms/nologin/getCmsContentListByClassify?status=xx&classifyId=xx&storeId=xx&page=xx&size=xx
+
+请求方式-GET
+
+参数:status - 状态(0未发布，1已发布) classifyId - 分类idstoreId - 店铺id/小区idpage - 当前页size - 条数
+
+返回:RespEntity - {status: 0为成功 , msg: 响应信息, data: data}
