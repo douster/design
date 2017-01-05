@@ -1,0 +1,3 @@
+1.屏蔽掉delete请求
+2.对于post请求和put请求 和get请求
+uri强正则path /*/*/_search path可以为三级，并且最后一级为_search 

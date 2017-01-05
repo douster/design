@@ -16,6 +16,15 @@ docker run -d -p 9200:9200 --name="es" es_ezio
 http://192.168.1.129:9200/_plugin/head/
 
 
+FROM daocloud.io/library/elasticsearch:2.3.5
+
+RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+RUN /usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf
+COPY ikzip /usr/share/elasticsearch/plugins
+RUN /usr/share/elasticsearch/bin/plugin install analysis-smartcn
+
+EXPOSE 920
+
 
 FROM daocloud.io/library/elasticsearch:2.3.5
 
@@ -200,3 +209,16 @@ docker run -it -d \
 ¨CDes.index.store.type ¡°memory¡± \
 
 ¨Cthreadpool.search.size ¡°61¡å
+
+
+
+
+
+ADD ik/ /usr/share/elasticsearch/plugins/analysis-ik/
+RUN echo "index.analysis.analyzer.ik.type : 'ik'">>/usr/share/elasticsearch/config/elasticsearch.yml
+
+
+
+
+COPY ./ikzip /usr/share/elasticsearch/plugins
+
