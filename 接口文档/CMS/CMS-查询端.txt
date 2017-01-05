@@ -1,21 +1,21 @@
-½Ó¿ÚÃû³Æ-½Ó¿ÚÃû³Æ-CMSÏêÇé
+æ¥å£åç§°-æ¥å£åç§°-CMSè¯¦æƒ…
 
- ½Ó¿ÚURL- http://192.168.1.131/api/cms/nologin/getCmsContentById?cmsId=xx&storeId=xx
+ æ¥å£URL- http://192.168.1.131/api/cms/nologin/getCmsContentById?cmsId=xx&storeId=xx
 
-ÇëÇó·½Ê½-GET
+è¯·æ±‚æ–¹å¼-GET
 
-²ÎÊı:cmsId - ÄÚÈİidstoreId - µêÆÌid/Ğ¡Çøid
+å‚æ•°:cmsId - å†…å®¹idstoreId - åº—é“ºid/å°åŒºid
 
-·µ»Ø:RespEntity - {status: 0Îª³É¹¦ , msg: ÏìÓ¦ĞÅÏ¢, data: data}
+è¿”å›:RespEntity - {status: 0ä¸ºæˆåŠŸ , msg: å“åº”ä¿¡æ¯, data: data}
 
 ------------------------------------------------------------------------------------------
 
-½Ó¿ÚÃû³Æ-Í¨¹ı·ÖÀàºÍ×´Ì¬²éÑ¯ÁĞ±í
+æ¥å£åç§°-é€šè¿‡åˆ†ç±»å’ŒçŠ¶æ€æŸ¥è¯¢åˆ—è¡¨
 
- ½Ó¿ÚURL- http://192.168.1.131/api/cms/nologin/getCmsContentListByClassify?status=xx&classifyId=xx&storeId=xx&page=xx&size=xx
+ æ¥å£URL- http://192.168.1.131/api/cms/nologin/getCmsContentListByClassify?status=xx&classifyId=xx&storeId=xx&page=xx&size=xx
 
-ÇëÇó·½Ê½-GET
+è¯·æ±‚æ–¹å¼-GET
 
-²ÎÊı:status - ×´Ì¬(0Î´·¢²¼£¬1ÒÑ·¢²¼) classifyId - ·ÖÀàidstoreId - µêÆÌid/Ğ¡Çøidpage - µ±Ç°Ò³size - ÌõÊı
+å‚æ•°:status - çŠ¶æ€(0æœªå‘å¸ƒï¼Œ1å·²å‘å¸ƒ) classifyId - åˆ†ç±»idstoreId - åº—é“ºid/å°åŒºidpage - å½“å‰é¡µsize - æ¡æ•°
 
-·µ»Ø:RespEntity - {status: 0Îª³É¹¦ , msg: ÏìÓ¦ĞÅÏ¢, data: data}
+è¿”å›:RespEntity - {status: 0ä¸ºæˆåŠŸ , msg: å“åº”ä¿¡æ¯, data: data}

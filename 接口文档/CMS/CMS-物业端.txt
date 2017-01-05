@@ -1,61 +1,74 @@
-½Ó¿ÚÃû³Æ-ÅúÁ¿Ôö¼ÓCMSÄÚÈİ
-
- ½Ó¿ÚURL- http://ip:port/api/cms_edit/v1/addCmsContent
-
-ÇëÇó·½Ê½-POST
-
-²ÎÊı:[{title: - ±êÌâ,remark: ÃèÊö,content: ÄÚÈİ,classifyId£º ·ÖÀàid}]
-
-·µ»Ø:RespEntity - {status: 0Îª³É¹¦ , msg: ÏìÓ¦ĞÅÏ¢, data: data}  
-
-------------------------------------------------------------------------------------------
-
-½Ó¿ÚÃû³Æ-¸ù¾İidÉ¾³ıÄÚÈİ
-
- ½Ó¿ÚURL- http://ip:port/api/cms_edit/v1/delCmsContent?cmsId=xx
-
-ÇëÇó·½Ê½-GET
-
-²ÎÊı:cmsId - ÄÚÈİid
-
-·µ»Ø:RespEntity - {status: 0Îª³É¹¦ , msg: ÏìÓ¦ĞÅÏ¢, data: data}
+æ¥å£Listç›®å½•
+----åˆ†ç±»æ¥å£æŸ¥çœ‹ç±»ç›®APIæ–‡æ¡£
+----æ‰¹é‡å¢åŠ CMSå†…å®¹
+----æ ¹æ®idåˆ é™¤å†…å®¹
+----æ ¹æ®idä¿®æ”¹ä¿¡æ¯
+----é€šè¿‡åˆ†ç±»å’ŒçŠ¶æ€æŸ¥è¯¢åˆ—è¡¨
+----æ¥å£åç§°-CMSè¯¦æƒ…
+----è·å–é“¾æ¥åœ°å€(ESæœç´¢å¼•æ“æ–¹å¼)
 
 ------------------------------------------------------------------------------------------
 
-½Ó¿ÚÃû³Æ-¸ù¾İidĞŞ¸ÄĞÅÏ¢
+------------------------------------------------------------------------------------------
 
- ½Ó¿ÚURL- http://ip:port/api/cms_edit/v1/modifyCmsContent
+æ¥å£åç§°-æ‰¹é‡å¢åŠ CMSå†…å®¹
 
-ÇëÇó·½Ê½-POST
+ æ¥å£URL- http://ip:port/api/cms_edit/v1/addCmsContent
 
-²ÎÊı:{id:cmsId,title: - ±êÌâ,remark: ÃèÊö,content: ÄÚÈİ,classifyId£º ·ÖÀàid,status: ×´Ì¬(0Î´·¢²¼£¬1ÒÑ·¢²¼)} - (³ıidÒÔÍâ£¬×Ö¶Î¶¼¿ÉÎª¿Õ)
+è¯·æ±‚æ–¹å¼-POST
 
-·µ»Ø:RespEntity - {status: 0Îª³É¹¦ , msg: ÏìÓ¦ĞÅÏ¢, data: data}
+å‚æ•°:[{title: æ ‡é¢˜,remark: æè¿°,content: å†…å®¹,classifyIdï¼š åˆ†ç±»id,classifyName:åˆ†ç±»åç§°}]
+
+è¿”å›:RespEntity - {status: 0ä¸ºæˆåŠŸ , msg: å“åº”ä¿¡æ¯, data: data}  
 
 ------------------------------------------------------------------------------------------
 
-½Ó¿ÚÃû³Æ-Í¨¹ı·ÖÀàºÍ×´Ì¬²éÑ¯ÁĞ±í
+æ¥å£åç§°-æ ¹æ®idåˆ é™¤å†…å®¹
 
- ½Ó¿ÚURL- http://ip:port/api/cms_edit/v1/getCmsContentListByClassify?status=xx&classifyId=xx&page=xx&size=xx
+ æ¥å£URL- http://ip:port/api/cms_edit/v1/delCmsContent?cmsId=xx
 
-ÇëÇó·½Ê½-GET
+è¯·æ±‚æ–¹å¼-GET
 
-²ÎÊı:status - ×´Ì¬(0Î´·¢²¼£¬1ÒÑ·¢²¼)classifyId - ·ÖÀàidpage - µ±Ç°Ò³size - ÌõÊı
+å‚æ•°:cmsId - å†…å®¹id
 
-·µ»Ø:RespEntity - {status: 0Îª³É¹¦ , msg: ÏìÓ¦ĞÅÏ¢, data: data}
+è¿”å›:RespEntity - {status: 0ä¸ºæˆåŠŸ , msg: å“åº”ä¿¡æ¯, data: data}
 
 ------------------------------------------------------------------------------------------
 
-½Ó¿ÚÃû³Æ-½Ó¿ÚÃû³Æ-CMSÏêÇé
+æ¥å£åç§°-æ ¹æ®idä¿®æ”¹ä¿¡æ¯
 
- ½Ó¿ÚURL- http://ip:port/api/cms_edit/v1/getCmsContentById?cmsId=xx
+ æ¥å£URL- http://ip:port/api/cms_edit/v1/modifyCmsContent
 
-ÇëÇó·½Ê½-GET
+è¯·æ±‚æ–¹å¼-POST
 
-²ÎÊı:cmsId - ÄÚÈİid
+å‚æ•°:{id:cmsId,title: - æ ‡é¢˜,remark: æè¿°,content: å†…å®¹,classifyIdï¼š åˆ†ç±»id,classifyName:åˆ†ç±»åç§°,status: çŠ¶æ€(0æœªå‘å¸ƒï¼Œ1å·²å‘å¸ƒ)} - (é™¤idä»¥å¤–ï¼Œå­—æ®µéƒ½å¯ä¸ºç©º)
 
-·µ»Ø:RespEntity - {status: 0Îª³É¹¦ , msg: ÏìÓ¦ĞÅÏ¢, data: data}
+è¿”å›:RespEntity - {status: 0ä¸ºæˆåŠŸ , msg: å“åº”ä¿¡æ¯, data: data}
+
+------------------------------------------------------------------------------------------
+
+æ¥å£åç§°-é€šè¿‡åˆ†ç±»å’ŒçŠ¶æ€æŸ¥è¯¢åˆ—è¡¨
+
+ æ¥å£URL- http://ip:port/api/cms_edit/v1/getCmsContentListByClassify?status=xx&classifyId=xx&page=xx&size=xx
+
+è¯·æ±‚æ–¹å¼-GET
+
+å‚æ•°:status - çŠ¶æ€(0æœªå‘å¸ƒï¼Œ1å·²å‘å¸ƒ)classifyId - åˆ†ç±»idpage - å½“å‰é¡µsize - æ¡æ•°
+
+è¿”å›:RespEntity - {status: 0ä¸ºæˆåŠŸ , msg: å“åº”ä¿¡æ¯, data: data}
+
+------------------------------------------------------------------------------------------
+
+æ¥å£åç§°-æ¥å£åç§°-CMSè¯¦æƒ…
+
+ æ¥å£URL- http://ip:port/api/cms_edit/v1/getCmsContentById?cmsId=xx
+
+è¯·æ±‚æ–¹å¼-GET
+
+å‚æ•°:cmsId - å†…å®¹id
+
+è¿”å›:RespEntity - {status: 0ä¸ºæˆåŠŸ , msg: å“åº”ä¿¡æ¯, data: data}
 
 -------------------------------------------------------------------------------------------
-½Ó¿ÚÃû³Æ-»ñÈ¡Á´½ÓµØÖ·(ESËÑË÷ÒıÇæ)
+æ¥å£åç§°-è·å–é“¾æ¥åœ°å€(ESæœç´¢å¼•æ“æ–¹å¼)
 
