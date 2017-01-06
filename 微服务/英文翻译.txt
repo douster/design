@@ -1,0 +1,99 @@
+Metrics
+Service management
+Service registry
+Service endpoint
+Healthcheck
+Logging
+
+create Customer
+timetable Lookup
+update Customer
+book Flights
+calculate Fare
+adjust Inventory
+allocate Seats
+
+
+
+韵律学
+
+服务管理
+
+服务注册中心
+
+服务端点
+
+检查
+
+登录中
+
+创造顾客
+
+时刻表查询
+
+更新客户
+
+预订航班
+
+票价计算
+
+库存调整
+
+分配席位 
+
+
+边界服务;
+[例句]Protocol services provide transport level services, including authentication, document routing, and edge service functions for automated document interchange.
+协议服务提供传输级服务，包括身份验证、文档路由和用于自动化文档互换的边缘服务功能。
+
+
+observe
+观察
+
+
+for less-complex systems 
+the extra baggage required to manage 
+micro services reduces productivity
+
+
+for less-complex systems 
+the extra baggage required to manage 
+micro services reduces productivity
+
+对于不太复杂的系统
+管理所需的额外行李
+微服务降低生产力
+
+as complexity kicks in 
+productivity starts falling rapidly 
+
+随着复杂性的开始
+生产力开始迅速下降
+
+
+the decreased coupling of 
+micro services reduces the 
+attenuation of productivity
+
+the decreased coupling of 
+micro services reduces the 
+attenuation of productivity
+下降耦合
+微服务降低了
+衰减的生产力
+
+Eureka service 服务注册中心
+RSS publishers
+
+Ribbon 该项目包括Netflix的客户端负载均衡器,以及中间层服务的客户端。
+Servo
+Astyanax
+Gather Metrics
+Archaius
+Blitz4j
+
+Rss middle tier service
+karyon
+cassandra
+rss edge 
+hystrix & ribbon  hystrix通过服务隔离、熔断(也可以称为断路)
